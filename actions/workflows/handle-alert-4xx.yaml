@@ -9,11 +9,11 @@ tasks:
   splunk:
     # TODO: hook up to splunk
     action: core.echo message="foo"
-    publish:
-      # TODO: extract splunk
-      splunk_result: "" 
     next:
       - when: <% succeeded() %> 
+        publish:
+          # TODO: extract splunk
+          splunk_result: "" 
         do: check_splunk_response
 
 
