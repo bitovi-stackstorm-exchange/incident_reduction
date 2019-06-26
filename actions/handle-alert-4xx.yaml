@@ -5,6 +5,6 @@ runner_type: orquesta
 entry_point: workflows/handle-alert-4xx.yaml
 enabled: true
 parameters:
-  inquiry_data:
+  alert_data:
     required: true
     type: object
