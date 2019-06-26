@@ -38,7 +38,9 @@ tasks:
 
   set_visible:
     # TODO: change this to an action to call bosun api
-    action: core.echo message="call api to set visible - alert_id(<% ctx().alert_data.id) %>"
+    action: core.echo
+    input:
+      message: "call api to set visible - alert_id(<% ctx().alert_data.id) %>"
     # TODO add
     # input:
     #   alert_id: <% ctx().alert_data.id %>
