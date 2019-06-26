@@ -22,7 +22,7 @@ tasks:
 
 
   handle_4xx:
-    action: incident_reduction.handle_alert_4xx
+    action: incident_reduction.handle-alert-4xx
     input:
       alert_data: <% ctx().trigger_data %>
 
