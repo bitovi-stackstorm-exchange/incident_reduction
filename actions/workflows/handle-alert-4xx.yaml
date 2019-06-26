@@ -13,14 +13,14 @@ tasks:
       - when: <% succeeded() %> 
         publish:
           # TODO: extract splunk
-          - splunk_result: "" 
+          - splunk_result: <% task(splunk).stdout %>
         do: check_splunk_response
 
 
   check_splunk_response:
     action: core.noop
     next:
-      - when: <% succeeded() and ctx().splunk_result.stdout = "foo" %>
+      - when: <% succeeded() and ctx().splunk_result = "foo" %>
         do: set_visible
 
   set_visible:
