@@ -9,11 +9,6 @@ trigger:
       url: "handle-alerts"
 
 action:
-  ref: examples.notify-inquiries
-  parameters:
-    inquiry_data: "{{ trigger }}"
-
-action:
     ref: incident_reduction.handle-alerts
     parameters:
       trigger_data: "{{trigger.body}}"
