@@ -5,12 +5,18 @@ description: Receiver for alerts
 input:
   - trigger_data
 
+vars:
+  - implemented_types:
+      - "4xx"
+
 tasks:
   route:
     action: core.noop
     next:
       - when: <% succeeded() and ctx().trigger_data.type = "4xx" %>
         do: handle_4xx
+
+        # TODO: if type not in given list (implemented_types)
       - when: <% succeeded() and not ctx().trigger_data.type %>
         do: notify_not_found
 
@@ -20,8 +26,6 @@ tasks:
     input:
       alert_data: <% ctx().trigger_data %>
 
-  notify_other:
-    action: core.echo message="Some other inquiry triggered"
 
   notify_not_found:
     action: core.echo message="Trigger type not found"
