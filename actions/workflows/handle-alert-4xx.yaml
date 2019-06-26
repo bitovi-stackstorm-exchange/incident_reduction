@@ -13,7 +13,7 @@ tasks:
       - when: <% succeeded() %> 
         publish:
           # TODO: extract splunk
-          splunk_result: "" 
+          - splunk_result: "" 
         do: check_splunk_response
 
 
