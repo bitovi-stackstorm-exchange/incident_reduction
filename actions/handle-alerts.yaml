@@ -1,0 +1,10 @@
+---
+name: Handle alerts
+description: Receiver for alert trigger data
+runner_type: orquesta
+entry_point: workflows/handle-alerts.yaml
+enabled: true
+parameters:
+  trigger_data:
+    required: true
+    type: object

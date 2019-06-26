@@ -1,0 +1,27 @@
+version: 1.0
+
+description: Receiver for alerts of type 4xx
+
+input:
+  - alert_data
+
+tasks:
+  splunk:
+    # TODO: hook up to splunk
+    action: core.echo message="foo"
+    publish:
+      # TODO: extract splunk
+      splunk_result: "" 
+    next:
+      - when: <% succeeded() %> 
+        do: check_splunk_response
+
+
+  check_splunk_response:
+    action: core.noop
+    next:
+      - when: <% succeeded() and ctx().splunk_result.stdout = "foo" %>
+        do: set_visible
+
+  set_visible:
+    action: core.echo message="call api to set visible"

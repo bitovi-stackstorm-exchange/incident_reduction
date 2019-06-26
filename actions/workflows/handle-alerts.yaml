@@ -1,0 +1,27 @@
+version: 1.0
+
+description: Receiver for alerts
+
+input:
+  - trigger_data
+
+tasks:
+  route:
+    action: core.noop
+    next:
+      - when: <% succeeded() and ctx().trigger_data.type = "4xx" %>
+        do: handle_4xx
+      - when: <% succeeded() and not ctx().trigger_data.type %>
+        do: notify_not_found
+
+
+  handle_4xx:
+    action: incident_reduction.handle_alert_4xx
+    input:
+      alert_data: <% ctx().trigger_data %>
+
+  notify_other:
+    action: core.echo message="Some other inquiry triggered"
+
+  notify_not_found:
+    action: core.echo message="Trigger type not found"
