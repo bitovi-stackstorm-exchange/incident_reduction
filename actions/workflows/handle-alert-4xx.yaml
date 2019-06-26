@@ -22,8 +22,8 @@ tasks:
 
           ### delete this ###
           - splunk_result: 
-            DT: "iPhone"
-          ### end delete this ###xs
+              DT: "iPhone"
+          ### end delete this ###
         do: check_splunk_response
 
 
