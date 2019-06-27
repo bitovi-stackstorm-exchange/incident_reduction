@@ -1,0 +1,16 @@
+---
+name: remediate-aaa
+description: Remediate aaa alert types
+runner_type: orquesta
+entry_point: workflows/handle-alert-aaa.yaml
+enabled: true
+parameters:
+  dc:
+    required: true
+    type: string
+  app_id:
+    required: true
+    type: string
+  app_env:
+    required: true
+    type: string

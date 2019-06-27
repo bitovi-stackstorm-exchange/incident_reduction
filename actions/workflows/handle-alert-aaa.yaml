@@ -6,9 +6,49 @@ input:
   - alert_data
 
 tasks:
+
+  get_approval:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          approved:
+            type: boolean
+            description: "Continue?"
+            required: True
+    next:
+      - when: <% task(get_approval).result.approved %>
+        do: handle_aaa
+      - when: <% not task(get_approval).result.approved %>
+        do: fail
+      - when: <% failed() %>
+        do: fail
+
   handle_aaa:
-    # TODO: create example_remediation pack and remediation.handle_aaa_alert action
     # TODO:
     #   - create xxxx_remediation pack if not exists
-    #   - create xxxx_remediation.handle_aaa_alert action to handle aaa alert types
-    action: core.echo message="call incident_reduction.handle_aaa pack" 
+    #   - move  xxxx_remediation.remediate_aaa action to xxxx_remediation pack
+    # action: core.echo message="call incident_reduction.remediate_aaa pack" 
+    action: incident_reduction.remediate_aaa
+    input:
+      dc: <% alert_data.dc %> # OCC/OCE
+      app_id: <% alert_data.app_id %> # app_id value 
+      app_env: <% alert_data.app_env %> # app environment
+    next:
+      - when: <% succeeded() and task(handle_aaa).result.status = "UP"  %>
+        do: notify_up
+      - when: <% succeeded() and task(handle_aaa).result.status = "DOWN"  %>
+        do: notify_down
+      - when: <% failed() %>
+        do: notify_failed
+
+
+  notify_up:
+    action: core.echo message="UP!"
+
+  notify_up:
+    action: core.echo message="DOWN!"
+
+  notify_failed:
+    action: core.echo message="Alert Remediatediation failed!"

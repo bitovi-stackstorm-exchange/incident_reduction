@@ -1,0 +1,16 @@
+version: 1.0
+
+description: Remediate an aaa alert type
+
+input:
+  - dc
+  - app_id
+  - app_env
+
+tasks:
+
+  notify_taking_action:
+    action: core.echo message="AAA Alert Remediatediation dc=<% ctx().dc %> app_id=<% ctx().app_id %> app_env=<% ctx().app_env %>"
+
+output:
+  status: "UP" # todo: make dynamic
