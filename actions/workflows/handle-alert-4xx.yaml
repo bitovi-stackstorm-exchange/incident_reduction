@@ -22,8 +22,21 @@ tasks:
 
           ### delete this ###
           - splunk_result: 
-              DT: "iPhone"
+              - _raw: "your device is ..."
           ### end delete this ###
+
+        do: format_splunk_result
+
+  format_splunk_result:
+    action: core.noop
+    next:
+      - when: <% ctx().splunk_result.where($._raw = "your device is ...").len() %>
+        publish:
+          - should_force_close: true
+        do: check_splunk_response
+      - when: <% not ctx().splunk_result.where($._raw = "your device is ...").len() %>
+        publish:
+          - should_set_visible: true
         do: check_splunk_response
 
 
@@ -31,9 +44,9 @@ tasks:
     action: core.noop
     next:
       # TODO: need to add specific business logic
-      - when: <% succeeded() and ctx().splunk_result.DT = "iPhone" %>
+      - when: <% succeeded() and ctx().should_force_close %>
         do: force_close
-      - when: <% succeeded() and ctx().splunk_result.DT != "iPhone" %>
+      - when: <% succeeded() and ctx().should_set_visible %>
         do: set_visible
 
   set_visible:
