@@ -8,6 +8,8 @@ input:
 vars:
   - implemented_types:
       - "4xx"
+      - "5xx"
+      - "AAA"
 
 tasks:
   route:
@@ -15,14 +17,30 @@ tasks:
     next:
       - when: <% succeeded() and ctx().trigger_data.type = "4xx" %>
         do: handle_4xx
+      - when: <% succeeded() and ctx().trigger_data.type = "5xx" %>
+        do: handle_5xx
+      - when: <% succeeded() and ctx().trigger_data.type = "AAA" %>
+        do: handle_aaa
 
         # TODO: if type not in given list (implemented_types)
-      - when: <% succeeded() and not ctx().trigger_data.type %>
+      - when: <% succeeded() and not ctx().implemented_types.contains(ctx().trigger_data.type) %>
         do: notify_not_found
 
 
   handle_4xx:
     action: incident_reduction.handle-alert-4xx
+    input:
+      alert_data: <% ctx().trigger_data %>
+
+  handle_5xx:
+    # TODO: create incident_reduction.handle_5xx action
+    action: core.echo message="call incident_reduction.handle_5xx pack" 
+    input:
+      alert_data: <% ctx().trigger_data %>
+
+  handle_aaa:
+    # TODO: create remediation pack and remediation.handle_aaa_alert action
+    action: core.echo message="call remediation.handle_aaa_alert pack" 
     input:
       alert_data: <% ctx().trigger_data %>
 
