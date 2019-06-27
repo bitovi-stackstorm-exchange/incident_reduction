@@ -36,9 +36,9 @@ tasks:
       app_id: <% ctx().alert_data.app_id %> # app_id value 
       app_env: <% ctx().alert_data.app_env %> # app environment
     next:
-      - when: <% succeeded() and task(handle_aaa).result.status = "UP"  %>
+      - when: <% succeeded() and task(handle_aaa).result.output.status = "UP"  %>
         do: notify_up
-      - when: <% succeeded() and task(handle_aaa).result.status = "DOWN"  %>
+      - when: <% succeeded() and task(handle_aaa).result.output.status = "DOWN"  %>
         do: notify_down
       - when: <% failed() %>
         do: notify_failed
