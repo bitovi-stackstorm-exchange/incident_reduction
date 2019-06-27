@@ -9,17 +9,20 @@ vars:
   - implemented_types:
       - "4xx"
       - "5xx"
+      - "3xx"
       - "AAA"
 
 tasks:
   route:
     action: core.noop
     next:
-      - when: <% succeeded() and ctx().trigger_data.type = "4xx" %>
+      - when: <% ctx().trigger_data.type = "4xx" %>
         do: handle_4xx
-      - when: <% succeeded() and ctx().trigger_data.type = "5xx" %>
+      - when: <% ctx().trigger_data.type = "5xx" %>
         do: handle_5xx
-      - when: <% succeeded() and ctx().trigger_data.type = "AAA" %>
+      - when: <% ctx().trigger_data.type = "3xx" %>
+        do: handle_3xx
+      - when: <% ctx().trigger_data.type = "AAA" %>
         do: handle_aaa
 
         # TODO: if type not in given list (implemented_types)
@@ -35,6 +38,12 @@ tasks:
   handle_5xx:
     # TODO: create incident_reduction.handle_5xx action
     action: core.echo message="call incident_reduction.handle_5xx pack" 
+    input:
+      alert_data: <% ctx().trigger_data %>
+
+  handle_3xx:
+    # TODO: create incident_reduction.handle_3xx action
+    action: core.echo message="call incident_reduction.handle_3xx pack" 
     input:
       alert_data: <% ctx().trigger_data %>
 
