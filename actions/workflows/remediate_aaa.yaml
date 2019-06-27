@@ -13,4 +13,4 @@ tasks:
     action: core.echo message="AAA Alert Remediatediation dc=<% ctx().dc %> app_id=<% ctx().app_id %> app_env=<% ctx().app_env %>"
 
 output:
-  status: "UP" # todo: make dynamic
+  - status: "UP" # todo: make dynamic
