@@ -47,7 +47,7 @@ tasks:
   notify_up:
     action: core.echo message="UP!"
 
-  notify_up:
+  notify_down:
     action: core.echo message="DOWN!"
 
   notify_failed:
