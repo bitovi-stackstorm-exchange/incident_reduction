@@ -18,9 +18,9 @@ tasks:
             description: "Continue?"
             required: True
     next:
-      - when: <% task(get_approval).result.approved %>
+      - when: <% task(get_approval).result.response.approved %>
         do: handle_aaa
-      - when: <% not task(get_approval).result.approved %>
+      - when: <% not task(get_approval).result.response.approved %>
         do: fail
       - when: <% failed() %>
         do: fail
