@@ -4,7 +4,7 @@ description: Handle alerts
 enabled: true
 
 trigger:
-  type: "core.st2.webhook"
+  type: core.st2.webhook
   parameters:
       url: "handle-alerts"
 
