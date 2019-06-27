@@ -1,5 +1,5 @@
 ---
-name: handle-alert-low-disk-space.yaml
+name: handle-alert-low-disk-space
 description: Handle low_disk_space alert types
 runner_type: orquesta
 entry_point: workflows/handle-alert-low-disk-space.yaml
