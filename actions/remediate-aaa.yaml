@@ -14,3 +14,7 @@ parameters:
   app_env:
     required: true
     type: string
+
+output_schema:
+  status:
+    type: "string"
