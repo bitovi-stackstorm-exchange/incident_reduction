@@ -32,9 +32,9 @@ tasks:
     # action: core.echo message="call incident_reduction.remediate_aaa pack" 
     action: incident_reduction.remediate-aaa
     input:
-      dc: <% alert_data.dc %> # OCC/OCE
-      app_id: <% alert_data.app_id %> # app_id value 
-      app_env: <% alert_data.app_env %> # app environment
+      dc: <% ctx().alert_data.dc %> # OCC/OCE
+      app_id: <% ctx().alert_data.app_id %> # app_id value 
+      app_env: <% ctx().alert_data.app_env %> # app environment
     next:
       - when: <% succeeded() and task(handle_aaa).result.status = "UP"  %>
         do: notify_up
