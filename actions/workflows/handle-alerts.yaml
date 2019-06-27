@@ -25,7 +25,7 @@ tasks:
       - when: <% ctx().trigger_data.type = "AAA" %>
         do: handle_aaa
 
-        # TODO: if type not in given list (implemented_types)
+        # handle not found
       - when: <% succeeded() and not ctx().implemented_types.contains(ctx().trigger_data.type) %>
         do: notify_not_found
 
