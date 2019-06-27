@@ -1,0 +1,14 @@
+version: 1.0
+
+description: Receiver for alerts of type aaa
+
+input:
+  - alert_data
+
+tasks:
+  handle_aaa:
+    # TODO: create example_remediation pack and remediation.handle_aaa_alert action
+    # TODO:
+    #   - create xxxx_remediation pack if not exists
+    #   - create xxxx_remediation.handle_aaa_alert action to handle aaa alert types
+    action: core.echo message="call incident_reduction.handle_aaa pack" 

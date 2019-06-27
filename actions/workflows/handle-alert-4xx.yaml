@@ -5,6 +5,10 @@ description: Receiver for alerts of type 4xx
 input:
   - alert_data
 
+vars:
+  - should_force_close: false
+  - should_set_visible: false
+  
 tasks:
   splunk:
     # TODO: hook up to splunk

@@ -13,6 +13,10 @@ vars:
       - "AAA"
 
 tasks:
+    # TODO: 
+    #   - Create a new pack:  xxxx_alerts
+    #   - Create a new worklow: handle-alerts
+    #   - Move this router logic to xxx_alerts.handle-alerts 
   route:
     action: core.noop
     next:
@@ -34,24 +38,26 @@ tasks:
     action: incident_reduction.handle-alert-4xx
     input:
       alert_data: <% ctx().trigger_data %>
+      
+  handle_aaa:
+    action: incident_reduction.handle-alert-aaa
+    input:
+      alert_data: <% ctx().trigger_data %>
 
   handle_5xx:
-    # TODO: create incident_reduction.handle_5xx action
+    # TODO:
+    #   - create incident_reduction.handle_5xx action to handle 5xx alert types
     action: core.echo message="call incident_reduction.handle_5xx pack" 
     input:
       alert_data: <% ctx().trigger_data %>
 
   handle_3xx:
-    # TODO: create incident_reduction.handle_3xx action
+    # TODO:
+    #   - create incident_reduction.handle_3xx action to handle 3xx alert types
     action: core.echo message="call incident_reduction.handle_3xx pack" 
     input:
       alert_data: <% ctx().trigger_data %>
 
-  handle_aaa:
-    # TODO: create remediation pack and remediation.handle_aaa_alert action
-    action: core.echo message="call remediation.handle_aaa_alert pack" 
-    input:
-      alert_data: <% ctx().trigger_data %>
 
 
   notify_not_found:
