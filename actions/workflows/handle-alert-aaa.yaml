@@ -17,6 +17,10 @@ tasks:
             type: boolean
             description: "Continue?"
             required: True
+          message:
+            type: string
+            description: "Reason for approval"
+            required: True
     next:
       - when: <% task(get_approval).result.response.approved %>
         do: handle_aaa
@@ -45,10 +49,10 @@ tasks:
 
 
   notify_up:
-    action: core.echo message="UP!"
+    action: core.echo message="UP!  Reason=<% task(get_approval).result.response.message %>"
 
   notify_down:
-    action: core.echo message="DOWN!"
+    action: core.echo message="DOWN!  Reason=<% task(get_approval).result.response.message %>"
 
   notify_failed:
     action: core.echo message="Alert Remediatediation failed!"
