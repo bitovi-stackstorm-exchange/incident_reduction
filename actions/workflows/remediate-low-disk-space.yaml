@@ -10,4 +10,5 @@ input:
 
 tasks:
   notify_taking_action:
-    action: core.echo message="taking action on low disk space"
+    with: <% ctx().entries %>
+    action: core.echo message="taking action on low disk space - hostname=<% item().hostname %>  mount=<% item().mount %>"
