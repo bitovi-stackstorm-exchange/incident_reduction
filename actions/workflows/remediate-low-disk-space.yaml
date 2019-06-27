@@ -1,0 +1,13 @@
+version: 1.0
+
+description: Remediate a a low_disk_space alert type
+
+input:
+  # Hostname, mount (/var/log etc)
+  - entries 
+
+
+
+tasks:
+  notify_taking_action:
+    action: core.echo message="taking action on low disk space"

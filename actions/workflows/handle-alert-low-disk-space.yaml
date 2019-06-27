@@ -1,0 +1,13 @@
+version: 1.0
+
+description: Receiver for alerts of type low_disk_space
+
+input:
+  - alert_data
+
+tasks:
+
+  remediate:
+    action: incident_reduction.remediate-low-disk-space
+    input:
+      entries: <% ctx().alert_data.low_disk_entries %>

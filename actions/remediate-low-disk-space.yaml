@@ -1,0 +1,17 @@
+---
+name: remediate-low-disk-space
+description: Remediate low_disk_space alert types
+runner_type: orquesta
+entry_point: workflows/remediate-low-disk-space.yaml
+enabled: true
+parameters:
+
+# Hostname, mount (/var/log etc)
+  entries:
+    required: true
+    type: array
+
+    # todo: specify nested item schema
+    # items:
+    #   hostname: string
+    #   mount: string

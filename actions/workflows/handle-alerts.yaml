@@ -11,6 +11,7 @@ vars:
       - "5xx"
       - "3xx"
       - "AAA"
+      - "low_disk_space"
 
 tasks:
     # TODO: 
@@ -28,6 +29,8 @@ tasks:
         do: handle_3xx
       - when: <% ctx().trigger_data.type = "AAA" %>
         do: handle_aaa
+      - when: <% ctx().trigger_data.type = "low_disk_space" %>
+        do: handle_low_disk_space
 
         # handle not found
       - when: <% succeeded() and not ctx().implemented_types.contains(ctx().trigger_data.type) %>
@@ -38,9 +41,15 @@ tasks:
     action: incident_reduction.handle-alert-4xx
     input:
       alert_data: <% ctx().trigger_data %>
-      
+
   handle_aaa:
     action: incident_reduction.handle-alert-aaa
+    input:
+      alert_data: <% ctx().trigger_data %>
+
+
+  handle_low_disk_space:
+    action: incident_reduction.handle-alert-low-disk-space
     input:
       alert_data: <% ctx().trigger_data %>
 
