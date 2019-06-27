@@ -30,7 +30,7 @@ tasks:
     #   - create xxxx_remediation pack if not exists
     #   - move  xxxx_remediation.remediate_aaa action to xxxx_remediation pack
     # action: core.echo message="call incident_reduction.remediate_aaa pack" 
-    action: incident_reduction.remediate_aaa
+    action: incident_reduction.remediate-aaa
     input:
       dc: <% alert_data.dc %> # OCC/OCE
       app_id: <% alert_data.app_id %> # app_id value 
