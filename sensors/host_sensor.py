@@ -46,7 +46,7 @@ class HostSensor(Sensor):
                 "id":"1111111",
                 "low_disk_entries": hosts
             }
-            self.sensor_service(trigger="incident_reduction.low_disk_space_sensor", payload=payload)
+            self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
             self.logger.debug('No host entries found.')
         pass

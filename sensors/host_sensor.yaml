@@ -4,7 +4,7 @@
   description: "Simple polling sensor that emits triggers."
   poll_interval: 60
   trigger_types:
-    - name: "host_diskspace_event"
+    - name: "low_disk_space_sensor_event"
       description: "Demonstrates polling/trigger functionality"
       payload_schema:
         type: "object"
