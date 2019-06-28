@@ -1,6 +1,0 @@
----
-name: low_disk_space_sensor
-description: Sample trigger
-payload_schema:
-  type: "object"
-  additionalProperties: true
