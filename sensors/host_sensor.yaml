@@ -1,0 +1,12 @@
+---
+  class_name: "Hots Sensor"
+  entry_point: "host_sensor.py"
+  description: "Simple polling sensor that emits triggers."
+  poll_interval: 60
+  enabled: true
+  trigger_types:
+    -
+      name: "host_diskspace_event"
+      description: "Demonstrates polling/trigger functionality"
+      payload_schema:
+        type: "object"

@@ -1,0 +1,14 @@
+---
+name: wrap-incident
+description: Higher-order workflow
+runner_type: orquesta
+entry_point: workflows/wrap-incident.yaml
+enabled: true
+parameters:
+  action:
+    required: true
+    type: string
+  action_inputs:
+    type: object
+  ticket_inputs:
+    type: object

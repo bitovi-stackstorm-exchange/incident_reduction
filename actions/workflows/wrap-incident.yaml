@@ -1,0 +1,34 @@
+version: 1.0
+
+description: Wraps actions execution with incident notifications
+
+input:
+  - action
+  - action_inputs
+  - ticket_inputs
+
+tasks:
+
+
+
+  create_ticket:
+    action: core.echo message="Create an incident ticket (<% ctx().ticket_inputs.id %>)"
+    next:
+      - when: <% succeeded() %>
+        do:
+          - incident_action
+
+
+  incident_action:
+    action: <% ctx().action %>
+    input: <% ctx().action_inputs %>
+    next:
+      - when: <% succeeded() %>
+        do: modify_ticket
+
+
+  modify_ticket:
+    action: core.echo message="Update incident ticket"
+
+
+

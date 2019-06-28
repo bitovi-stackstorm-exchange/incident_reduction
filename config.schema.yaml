@@ -1,0 +1,5 @@
+---
+  hosts:
+    description: "list of hosts"
+    type: "array"
+    default: []

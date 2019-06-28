@@ -12,4 +12,5 @@ tasks:
   notify_taking_action:
     with:
       items: <% ctx().entries %>
+    # todo: run chef cookbook or similar
     action: core.echo message="taking action on low disk space - hostname=<% item().hostname %>  mount=<% item().mount %>"
