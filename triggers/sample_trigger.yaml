@@ -1,0 +1,6 @@
+---
+name: sample_trigger
+description: Sample trigger
+payload_schema:
+  type: "object"
+  additionalProperties: true
