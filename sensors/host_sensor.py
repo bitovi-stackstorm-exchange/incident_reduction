@@ -41,11 +41,12 @@ class HostSensor(Sensor):
         #   # Typically the trace_tag is unique and a reference to an external event.
         hosts = self.config.hosts
         if(len(hosts)):
-            self.sensor_service("incident_reduction.low_disk_space_sensor", {
+            payload = {
                 "type":"low_disk_space",
                 "id":"1111111",
                 "low_disk_entries": hosts
-            })
+            }
+            self.sensor_service(trigger="incident_reduction.low_disk_space_sensor", payload=payload)
         else:
             self.logger.debug('No host entries found.')
         pass
