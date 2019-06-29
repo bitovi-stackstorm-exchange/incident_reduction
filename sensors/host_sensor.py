@@ -53,7 +53,7 @@ class HostSensor(Sensor):
                 "config": self.config
             }
             self.logger.info("payload")
-            self.logger.info(str(payload))
+            # self.logger.info(str(payload))
             self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
             self.logger.debug('No host entries found.')
