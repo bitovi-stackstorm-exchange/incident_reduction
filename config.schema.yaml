@@ -2,4 +2,6 @@
 hosts:
   description: "list of hosts"
   type: "array"
+  items:
+    type: "object"
   default: []
