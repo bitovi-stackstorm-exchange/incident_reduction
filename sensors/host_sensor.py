@@ -15,8 +15,8 @@ class HostSensor(Sensor):
     def __init__(self, sensor_service, config, poll_interval=20):
         super(HostSensor, self).__init__(
             sensor_service = sensor_service,
-            config = config#,
-            # poll_interval = poll_interval
+            config = config,
+            poll_interval = poll_interval
         )
 
         self.logger = None
@@ -53,6 +53,7 @@ class HostSensor(Sensor):
                 "low_disk_entries": hosts,
                 "config": self.config
             }
+            self.logger.log(payload)
             self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
             self.logger.debug('No host entries found.')
