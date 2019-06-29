@@ -9,7 +9,7 @@ input:
 
 tasks:
 
-  wrap_incident:
+  notify_remediate:
     action: incident_reduction.wrap-incident
     input:
       action: core.echo
@@ -17,6 +17,12 @@ tasks:
         message: "AAA Alert Remediatediation dc=<% ctx().dc %> app_id=<% ctx().app_id %> app_env=<% ctx().app_env %>"
       ticket_inputs:
         id: foo
+
+  # the unwrapped version looks like this
+  # notify_remediate: # pick any name
+  #   action: core.echo
+  #   input:
+  #     message: "AAA Alert Remediatediation..."
 
 output:
   - status: "UP" # todo: make dynamic
