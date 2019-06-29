@@ -46,8 +46,9 @@ class HostSensor(PollingSensor):
 
         # hosts = json.loads(self._config.get('hosts', "[]"))
         payload = self._config.get('payload', { "entries": []})
-        hosts = payload.entries
-        self.logger.info('hosts: ' + json.dumps(hosts))
+
+        self.logger.info('hosts: ' + json.dumps(payload))
+        hosts = payload["entries"]
 
         if(len(hosts)):
             payload = {
