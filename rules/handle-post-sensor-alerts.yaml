@@ -4,7 +4,7 @@ description: Handle alerts from host_sensor
 enabled: true
 
 trigger:
-  type: incident_reduction.low_disk_space_sensor
+  type: incident_reduction.low_disk_space_sensor_event
 
 action:
     ref: incident_reduction.handle-alerts
