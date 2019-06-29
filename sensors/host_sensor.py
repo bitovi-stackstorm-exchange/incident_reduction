@@ -1,4 +1,4 @@
-from st2reactor.sensor.base import Sensor
+from st2reactor.sensor.base import PollingSensor
 
 
 class HostSensor(PollingSensor):
