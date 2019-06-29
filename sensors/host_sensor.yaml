@@ -3,9 +3,18 @@
   entry_point: "host_sensor.py"
   description: "Simple polling sensor that emits triggers."
   poll_interval: 60
-  enabled: false
+  enabled: true
   trigger_types:
     - name: "low_disk_space_sensor_event"
       description: "Demonstrates polling/trigger functionality"
       payload_schema:
         type: "object"
+        properties:
+          type:
+            type: "string"
+          id:
+            type: "string"
+          low_disk_entries:
+            type: "array"
+            items:
+              type: "object"
