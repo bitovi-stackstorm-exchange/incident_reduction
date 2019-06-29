@@ -13,11 +13,20 @@ tasks:
     action: core.echo message="taking action on low disk space - hostname=<% item().hostname %>  mount=<% item().mount %>"
     next:
       - when: <% succeeded() %>
+        do: join_entries
+
+  join_entries:
+    action: core.noop
+    join: all
+    next:
+      - when: <% succeeded() %>
+        publish:
+          - entry_responses: <% task(handle_entries).result.items.select($.result.stdout) %>
         do: notify_action_taken
+
 
   notify_action_taken:
     action: core.echo message="this many responses - <% ctx().entry_responses.len() %>"
-    join: all
 
 output:
-  - entry_responses: <% task(handle_entries).result.items.select($.result.stdout) %>
+  - entry_responses: <$ ctx().entry_responses %>
