@@ -43,8 +43,8 @@ class HostSensor(PollingSensor):
         
         self.logger.info("in sensor")
         self.logger.debug("in sensor")
-        # hosts = self.config.hosts
-        hosts = []
+        hosts = self.config.hosts
+        # hosts = []
         if(len(hosts)):
             payload = {
                 "type":"low_disk_space",
