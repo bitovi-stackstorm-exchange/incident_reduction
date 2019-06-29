@@ -7,7 +7,7 @@ payload:
   properties:
     entries:
       type: "array"
-      description: "list of hosts: [{"hostname":"foo", "mount":"/var/log"}]"
+      description: 'list of hosts: [{"hostname":"foo", "mount":"/var/log"}]'
       items:
         type: "object"
       required: false
