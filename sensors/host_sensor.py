@@ -15,10 +15,9 @@ class HostSensor(Sensor):
     def __init__(self, sensor_service, config, poll_interval=20):
         super(HostSensor, self).__init__(
             sensor_service = sensor_service,
-            config = config,
-            poll_interval = poll_interval
+            config = config
         )
-
+        self.poll_interval = poll_interval
         self.logger = None
 
     def setup(self):
