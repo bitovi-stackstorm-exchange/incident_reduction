@@ -1,5 +1,5 @@
 from st2reactor.sensor.base import PollingSensor
-
+import json
 
 class HostSensor(PollingSensor):
     """
@@ -45,7 +45,7 @@ class HostSensor(PollingSensor):
         self.logger.debug("in sensor")
 
         hosts = self._config.get('hosts', [])
-        self.logger.info('hosts')
+        self.logger.info('hosts: ' + json.dumps(hosts))
 
         if(len(hosts)):
             payload = {
