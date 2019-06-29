@@ -1,5 +1,5 @@
 ---
-  class_name: "Hots Sensor"
+  class_name: HostSensor
   entry_point: "host_sensor.py"
   description: "Simple polling sensor that emits triggers."
   poll_interval: 60
