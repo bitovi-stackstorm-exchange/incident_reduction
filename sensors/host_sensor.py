@@ -45,7 +45,7 @@ class HostSensor(PollingSensor):
         self.logger.debug("in sensor")
 
         hosts = self._config.get('hosts', [])
-        self.logger.info('hosts', str(hosts))
+        self.logger.info('hosts')
 
         if(len(hosts)):
             payload = {
