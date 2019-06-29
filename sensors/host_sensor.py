@@ -14,9 +14,9 @@ class HostSensor(Sensor):
 
     def __init__(self, sensor_service, config, poll_interval=20):
         super(HostSensor, self).__init__(
-            sensor_service=sensor_service,
-            config=config,
-            poll_interval=poll_interval
+            sensor_service = sensor_service,
+            config = config,
+            poll_interval = poll_interval
         )
 
         self.logger = None
@@ -25,7 +25,7 @@ class HostSensor(Sensor):
         # Setup stuff goes here. For example, you might establish connections
         # to external system once and reuse it. This is called only once by the system.
         self.logger = self.sensor_service.get_logger(name=self.__class__.__name__)
-        
+
         pass
 
     def run(self):
