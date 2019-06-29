@@ -3,12 +3,7 @@ version: 1.0
 description: Remediate a a low_disk_space alert type
 
 input:
-  # Hostname, mount (/var/log etc)
-  - entries 
-
-
-vars:
-  - entry_responses: []
+  - entries  # {"hostname": "foo", "mount": "/var/log"}
 
 tasks:
   handle_entries:
@@ -18,9 +13,6 @@ tasks:
     action: core.echo message="taking action on low disk space - hostname=<% item().hostname %>  mount=<% item().mount %>"
     next:
       - when: <% succeeded() %>
-        publish:
-          # append result of this item to the final list
-          - entry_responses: <% ctx().entry_responses.append(item().stdout) %>
         do: notify_action_taken
 
   notify_action_taken:
@@ -28,4 +20,4 @@ tasks:
     join: all
 
 output:
-  - entry_responses: <% ctx().entry_responses %>
+  - entry_responses: <% task(handle_entries).result.items.select($.result.stdout) %>
