@@ -25,7 +25,7 @@ class HostSensor(Sensor):
         # to external system once and reuse it. This is called only once by the system.
         self.logger = self.sensor_service.get_logger(name=self.__class__.__name__)
 
-    def run(self):
+    def poll(self):
         # This is where the crux of the sensor work goes.
         # This is called once by the system.
         # (If you want to sleep for regular intervals and keep
