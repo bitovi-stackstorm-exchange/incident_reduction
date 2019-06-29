@@ -52,10 +52,9 @@ class HostSensor(PollingSensor):
                 "low_disk_entries": hosts,
                 "config": self.config
             }
-            self.logger.info("payload")
-            self.logger.info(str(payload))
             self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
+            self.logger.info('No host entries found.', str(self.config))
             self.logger.debug('No host entries found.')
         pass
 
