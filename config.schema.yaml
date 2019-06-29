@@ -1,7 +1,14 @@
 ---
-hosts:
-  description: "list of hosts"
-  type: "array"
-  items:
-    type: "object"
-  default: []
+payload:
+  description: "Sensor specific settings, simulate hosts payload."
+  type: "object"
+  required: false
+  additionalProperties: false
+  properties:
+    entries:
+      type: "array"
+      description: "list of hosts: [{"hostname":"foo", "mount":"/var/log"}]"
+      items:
+        type: "object"
+      required: false
+      additionalProperties: true
