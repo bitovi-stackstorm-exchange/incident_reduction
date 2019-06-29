@@ -24,7 +24,7 @@ tasks:
         do: notify_action_taken
 
   notify_action_taken:
-    action: core.message message="this many responses - <% ctx().entry_responses.len() %>"
+    action: core.echo message="this many responses - <% ctx().entry_responses.len() %>"
     join: all
 
 output:
