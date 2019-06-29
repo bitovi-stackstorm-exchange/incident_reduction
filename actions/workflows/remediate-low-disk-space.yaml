@@ -7,10 +7,25 @@ input:
   - entries 
 
 
+vars:
+  - entry_responses: []
 
 tasks:
-  notify_taking_action:
+  handle_entries:
     with:
       items: <% ctx().entries %>
     # todo: run chef cookbook or similar
     action: core.echo message="taking action on low disk space - hostname=<% item().hostname %>  mount=<% item().mount %>"
+    next:
+      - when: <% succeeded() %>
+        publish:
+          # append result of this item to the final list
+          - entry_responses: <% ctx().entry_responses.append(item().result) %>
+        do: notify_action_taken
+
+  notify_action_taken:
+    action: core.message message="this many responses - <% ctx().entry_responses.len() %>"
+    join: all
+
+output:
+  - entry_responses: <% ctx().entry_responses %>
