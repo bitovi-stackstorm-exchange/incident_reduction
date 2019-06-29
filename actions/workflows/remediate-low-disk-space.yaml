@@ -20,7 +20,7 @@ tasks:
       - when: <% succeeded() %>
         publish:
           # append result of this item to the final list
-          - entry_responses: <% ctx().entry_responses.append(item().result) %>
+          - entry_responses: <% ctx().entry_responses.append(item().stdout) %>
         do: notify_action_taken
 
   notify_action_taken:
