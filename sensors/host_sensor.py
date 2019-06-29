@@ -1,7 +1,7 @@
 from st2reactor.sensor.base import Sensor
 
 
-class HostSensor(Sensor):
+class HostSensor(PollingSensor):
     """
     * self.sensor_service
         - provides utilities like
