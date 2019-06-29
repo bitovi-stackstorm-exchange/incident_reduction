@@ -43,6 +43,8 @@ class HostSensor(Sensor):
         #   # trace_tag is a tag you would like to associate with the dispatched TriggerInstance
         #   # Typically the trace_tag is unique and a reference to an external event.
         
+        self.logger.info("in sensor")
+        self.logger.debug("in sensor")
         # hosts = self.config.hosts
         hosts = []
         if(len(hosts)):
@@ -52,7 +54,8 @@ class HostSensor(Sensor):
                 "low_disk_entries": hosts,
                 "config": self.config
             }
-            self.logger.log(payload)
+            self.logger.info("payload")
+            self.logger.info(payload)
             self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
             self.logger.debug('No host entries found.')
