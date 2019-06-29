@@ -43,12 +43,15 @@ class HostSensor(Sensor):
         #   # E.g.: dispatch('examples.foo_sensor', {'k1': 'stuff', 'k2': 'foo'})
         #   # trace_tag is a tag you would like to associate with the dispatched TriggerInstance
         #   # Typically the trace_tag is unique and a reference to an external event.
-        hosts = self.config.hosts
+        
+        # hosts = self.config.hosts
+        hosts = []
         if(len(hosts)):
             payload = {
                 "type":"low_disk_space",
                 "id":"1111111",
-                "low_disk_entries": hosts
+                "low_disk_entries": hosts,
+                "config": self.config
             }
             self.sensor_service(trigger="low_disk_space_sensor_event", payload=payload)
         else:
