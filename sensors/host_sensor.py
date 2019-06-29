@@ -40,26 +40,18 @@ class HostSensor(PollingSensor):
         #   # E.g.: dispatch('examples.foo_sensor', {'k1': 'stuff', 'k2': 'foo'})
         #   # trace_tag is a tag you would like to associate with the dispatched TriggerInstance
         #   # Typically the trace_tag is unique and a reference to an external event.
-        
-        self.logger.info("in sensor")
-        self.logger.debug("in sensor")
-
-        # hosts = json.loads(self._config.get('hosts', "[]"))
-        payload = self._config.get('payload', { "entries": []})
-
-        self.logger.info('hosts: ' + json.dumps(payload))
-        hosts = payload["entries"]
+        payload_in = self._config.get('payload', { "entries": []})
+        self.logger.debug('hosts: ' + json.dumps(payload_in))
+        hosts = payload_in["entries"]
 
         if(len(hosts)):
-            payload = {
+            trigger = "incident_reduction.low_disk_space_sensor_event"
+            self._sensor_service.dispatch(trigger=trigger, payload={
                 "type":"low_disk_space",
                 "id":"1111111",
                 "low_disk_entries": hosts
-            }
-            trigger = "incident_reduction.low_disk_space_sensor_event"
-            self._sensor_service.dispatch(trigger=trigger, payload=payload)
+            })
         else:
-            self.logger.info('No host entries found.')
             self.logger.debug('No host entries found.')
         pass
 
