@@ -8,10 +8,10 @@ ack:
     format: "Hold tight while I remediate low disk space"
 result:
     format: |
-        remediated low disk space for: *{{execution.parameters.entries}}*
+        remediated low disk space:
 
         Details are as follows:
-        {% for host in execution.output -%}
+        {% for host in execution.result.output -%}
             *{{host}}*
         {%+ endfor %}
 
