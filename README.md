@@ -2,10 +2,18 @@
 
 ## Config
 
-### config: entries
-A list of entries for the sensor.  Should be of the following format:
+### config: payload
+Type: object
+
+Example:
 ```
-[{"hostname":"foo", "mount":"/var/log"}]
+{"entries":[{"hostname":"foo", "mount":"/var/log"}]}
+```
+
+- entries
+A list of entries for the sensor.  Each entry should be of the following format:
+```
+{"hostname":"foo", "mount":"/var/log"}
 ```
 
 ## Actions
