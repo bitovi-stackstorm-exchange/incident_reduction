@@ -10,7 +10,7 @@ parameters:
   entries:
     required: true
     type: array
-    default: "{{config_context.payload.entries}}"
+    default: "{{config_context.payload['entries']}}"
 
     # todo: specify nested item schema
     # items:
