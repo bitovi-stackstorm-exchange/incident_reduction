@@ -3,7 +3,7 @@ name: "low-disk-space"
 action_ref: "incident_reduction.remediate-low-disk-space"
 description: "Remediates low disk space for configured hosts"
 formats:
-    - "remediate-low-disk-space {{entries=[{'hostname':'foo', 'mount':'/var/log'}]}}"
+    - 'remediate-low-disk-space {{entries=[{"hostname":"foo", "mount":"/var/log"}]}}'
 ack:
     format: "Hold tight while I remediate low disk space for: *{{execution.parameters.entries}}*"
 result:
