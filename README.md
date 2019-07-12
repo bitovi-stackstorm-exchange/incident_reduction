@@ -142,3 +142,13 @@ Emits a `low_disk_space_sensor_event` trigger containing the `entries` from the 
 
 > **Note:** This is turned off by default because it creates a lot of noise.  Turn it on only when needed for demonstrating or lower the `poll_interval`.
 
+## Aliases
+
+### Aliases: low-disk-space
+Demonstrates connecting ChatOps to an existing action.
+
+```
+@bot remediate-low-disk-space
+```
+
+> **Note:** This uses the hard-coded default values for hosts. In practice, this would likely be passed as variables.
