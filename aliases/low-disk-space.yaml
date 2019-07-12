@@ -5,7 +5,7 @@ description: "Remediates low disk space for configured hosts"
 formats:
     - 'remediate-low-disk-space'
 ack:
-    format: "Hold tight while I remediate low disk space for: *{{execution.parameters.entries}}*"
+    format: "Hold tight while I remediate low disk space"
 result:
     format: |
         remediated low disk space for: *{{execution.parameters.entries}}*
