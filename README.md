@@ -2,7 +2,7 @@
 
 ## Config
 
-### entries
+### config: entries
 A list of entries for the sensor.  Should be of the following format:
 ```
 [{"hostname":"foo", "mount":"/var/log"}]
@@ -10,20 +10,20 @@ A list of entries for the sensor.  Should be of the following format:
 
 ## Actions
 
-### handle-alerts
+### Actions: handle-alerts
 This acts as a router to decide which sub-workflow to execute based on an alert type.
 
 ![Alert Router](/img/use-cases-alert-router.jpg)
 
-### handle-alert-4xx
+### Actions: handle-alert-4xx
 Look up information about the alert in a log store (Splunk, Elasticsearch, Scalyr, etc), and perform an action based on the result.
 
-### handle-alert-aaa
+### Actions: handle-alert-aaa
 AAA is designated here as a highly destructive action (such as removing a server, clearing a database, etc), and it should be approved prior to executing the `remediate-aaa` action.
 
 ![AAA](/img/use-cases-aaa.jpg)
 
-#### handle-alert-aaa inquiry: Example API Calls
+#### Actions: handle-alert-aaa inquiry: Example API Calls
 ```
 # responding an inquiry
 curl 'https://stackstorm-instance.com/api/v1/inquiries/5d1449fb93addb50bf8e5a5f' \
@@ -42,23 +42,23 @@ curl 'https://stackstorm-instance.com/api/v1/inquiries/5d1449fb93addb50bf8e5a5f'
 
 ```
 
-### remediate-aaa
+### Actions: remediate-aaa
 This would perform the actual destructive action.
 
 This workflow demonstrates the use of a Higher-Order Workflow pattern (see `wrap-incident` below).
 
-### handle-alert-low-disk-space
+### Actions: handle-alert-low-disk-space
 Follows the naming pattern of `handle-*` and calls a remediate action.
 
-### remediate-low-disk-space
+### Actions: remediate-low-disk-space
 For a list of given hosts, run a Chef cookbook (or similar integration) to clean the excessive disk data.
 
 ![Clear Log Files](/img/use-cases-clear-log-files.jpg)
 
-### wrap-incident
+### Actions: wrap-incident
 Example Implementation of a Higher-Order Workflow pattern.  It takes an action and an action's inputs as its own inputs and allows wrapping arbitrary actions with customized logic.
 
-#### Problem
+#### Actions: wrap-incident: Problem
 
 Sometimes it is necessary to standardize logic before and/or after a set of actions.
 
@@ -81,7 +81,7 @@ It becomes possible for pack developers to forget to include pieces such as the 
 There are currently only two additional actions - one before to create a ticket and one following to update the ticket.  However, it’s possible that there could be additional complexity and steps that need to happen prior to an action, after an action, or both, in which case the ‘convention’ that pack developers would need to follow could require excessive overhead.
 
 
-#### Solution
+#### Actions: wrap-incident: Solution
 
 To remedy these challenges, a Higher-Order Workflow pattern can be used wherein the action and action inputs are parameterized, and the necessary incident creation logic can be abstracted from the actual calling of the action.
 
@@ -93,11 +93,11 @@ This way, pack developers need only know to ‘wrap’ their action within the �
 
 ## Rules
 
-### handle-alerts
+### Rules: handle-alerts
 
 Sets up a webhook to send alerts to.  All alerts will be routed into the `handle-alerts` action (the Alert Router workflow described above).
 
-#### handle-alerts: Example API Calls
+#### Rules: handle-alerts: Example API Calls
 ```
 # 4xx
 curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
@@ -123,13 +123,13 @@ curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
  --data-binary '{"type":"low_disk_space","id":"1111111","low_disk_entries":[{"hostname":"a","mount":"/var/log"},{"hostname":"b","mount":"/var/log"}]}'
 ```
 
-### handle-post-sensor-alerts
+### Rules: handle-post-sensor-alerts
 
-Receives alerts from a trigger (nstead of a webhook) and routes them into the `handle-alerts` action.
+Receives alerts from a trigger (instead of a webhook) and routes them into the `handle-alerts` action.
 
 ## Sensors
 
-### host_sensor
+### Sensors: host_sensor
 Emits a `low_disk_space_sensor_event` trigger containing the `entries` from the config.
 
 > **Note:** This is turned off by default because it creates a lot of noise.  Turn it on only when needed for demonstrating or lower the `poll_interval`.
