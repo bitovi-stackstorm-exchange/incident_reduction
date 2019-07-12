@@ -10,7 +10,9 @@ parameters:
   entries:
     required: true
     type: array
-    default: "{{config_context.payload['entries']}}"
+    default:
+      - hostname: "foo"
+        mount: "/var/log"
 
     # todo: specify nested item schema
     # items:
