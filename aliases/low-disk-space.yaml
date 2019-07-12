@@ -11,5 +11,7 @@ result:
         remediated low disk space for: *{{execution.parameters.entries}}*
 
         Details are as follows:
-        {{execution.result.output}}
+        {% for host in execution.output -%}
+            *{{host}}*
+        {%+ endfor %}
 

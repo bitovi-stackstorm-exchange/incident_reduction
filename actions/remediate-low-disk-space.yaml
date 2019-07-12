@@ -10,9 +10,6 @@ parameters:
   entries:
     required: true
     type: array
-    default:
-      - hostname: "foo"
-        mount: "/var/log"
 
     # todo: specify nested item schema
     # items:
