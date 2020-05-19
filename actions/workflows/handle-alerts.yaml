@@ -19,7 +19,7 @@ tasks:
     #   - Create a new worklow: handle-alerts
     #   - Move this router logic to xxx_alerts.handle-alerts 
   route:
-  action: core.noop
+    action: core.noop
     next:
       - when: <% ctx().trigger_data.type = "4xx" %>
         do: handle_4xx
