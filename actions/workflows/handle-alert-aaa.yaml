@@ -16,6 +16,7 @@ tasks:
           approved:
             type: boolean
             description: "Continue?"
+            required: True
           message:
             type: string
             description: "Reason for approval"
