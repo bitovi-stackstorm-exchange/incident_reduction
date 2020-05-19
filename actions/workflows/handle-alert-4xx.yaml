@@ -30,7 +30,7 @@ tasks:
           ### end delete this ###
 
         do: format_splunk_result
-      - when: <% succeeded() and ctx().alert_data.mock_splunk_data.len() %> 
+      - when: <% succeeded() and ctx().alert_data.mock_splunk_data %> 
         publish:
           - splunk_result: 
               - _raw: <% ctx().alert_data.mock_splunk_data %> 
