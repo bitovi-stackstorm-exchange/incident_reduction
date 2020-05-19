@@ -36,7 +36,6 @@ tasks:
       - when: <% succeeded() and not ctx().implemented_types.contains(ctx().trigger_data.type) %>
         do: notify_not_found
 
-
   handle_4xx:
     action: incident_reduction.handle-alert-4xx
     input:

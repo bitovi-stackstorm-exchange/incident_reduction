@@ -114,6 +114,20 @@ curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
  -H 'St2-Api-Key: <api-key>' \
  --data-binary '{"type":"4xx","id":"1111111"}'
 
+# 4xx (with mock data - force close)
+curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
+-k \
+ -H 'Content-Type: application/json' \
+ -H 'St2-Api-Key: <api-key>' \
+ --data-binary '{"type":"4xx","id":"1111111", "mock_splunk_data": "your device is ..."}'
+
+# 4xx (with mock data - set visible)
+curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
+-k \
+ -H 'Content-Type: application/json' \
+ -H 'St2-Api-Key: <api-key>' \
+ --data-binary '{"type":"4xx","id":"1111111", "mock_splunk_data": "foo"}'
+
 
 # AAA
  curl 'https://stackstorm-instance.com/api/v1/webhooks/handle-alerts' \
