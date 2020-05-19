@@ -19,7 +19,7 @@ tasks:
     action: core.noop
     ### end delete this ###
     next:
-      - when: <% succeeded() %> 
+      - when: <% succeeded() and not ctx().alert_data.containsKey("mock_splunk_data") %> 
         publish:
           # TODO: extract splunk
           # - splunk_result: <% task(splunk).result %>
@@ -30,7 +30,7 @@ tasks:
           ### end delete this ###
 
         do: format_splunk_result
-      - when: <% succeeded() and ctx().alert_data.mock_splunk_data %> 
+      - when: <% succeeded() and ctx().alert_data.containsKey("mock_splunk_data") %> 
         publish:
           - splunk_result: 
               - _raw: <% ctx().alert_data.mock_splunk_data %> 
