@@ -25,9 +25,9 @@ tasks:
       - when: <% task(get_approval).result.response.approved %>
         do: handle_aaa
       - when: <% not task(get_approval).result.response.approved %>
-        do: fail
+        do: notify_ask_denied
       - when: <% failed() %>
-        do: fail
+        do: notify_ask_failed
 
   handle_aaa:
     # TODO:
@@ -56,3 +56,9 @@ tasks:
 
   notify_failed:
     action: core.echo message="Alert Remediatediation failed!"
+
+  notify_ask_failed:
+    action: core.echo message="Approval request failed!"
+
+  notify_ask_denied:
+    action: core.echo message="Approval request denied!"
