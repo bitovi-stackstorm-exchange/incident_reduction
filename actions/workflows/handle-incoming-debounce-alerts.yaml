@@ -1,0 +1,19 @@
+version: 1.0
+
+description: Receiver for alerts to be debounced
+
+input:
+  - trigger_data
+
+tasks:
+  notify:
+    action: core.echo message="Received alert!"
+    next:
+      - when: <% succeeded() %>
+        do: debounce
+
+  store:
+    # TODO: new action to push to the kv store
+    action: core.noop
+    # input:
+    #   alert_data: <% ctx().trigger_data %>
