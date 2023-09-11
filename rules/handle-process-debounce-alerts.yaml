@@ -1,13 +1,13 @@
 ---
-name: handle-host-sensor-alerts
-description: Handle alerts from host_sensor
+name: handle-process-debounce-alerts
+description: Handle triggers from process_debounce_alerts sensor
 enabled: true
 
 trigger:
-  type: incident_reduction.low_disk_space_sensor_event
+  type: incident_reduction.processed_debounced_alerts
 
 action:
-    ref: incident_reduction.handle-alerts
+    ref: incident_reduction.handle-processed-debounced-alerts
     parameters:
       trigger_data: "{{trigger}}"
 
