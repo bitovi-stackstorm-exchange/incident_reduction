@@ -121,7 +121,6 @@ class ProcessDebounceAlerts(PollingSensor):
 
             try:
                 # output the current user as well as all files in full_debounce_alerts_file_processing's directory along with who owns them
-                self.logger.info(f"current user: {os.getlogin()}")
                 self.logger.info(f"current user: {os.system('whoami')}")
                 self.logger.info(f"current user: {os.system('ls -l /packdata')}")
                 self.logger.info(f"current user: {os.system('ls -l /packdata/incident_reduction')}")
