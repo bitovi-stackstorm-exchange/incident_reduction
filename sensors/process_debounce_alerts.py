@@ -112,12 +112,19 @@ class ProcessDebounceAlerts(PollingSensor):
         
             # "claim" the file by renaming it with a suffix of ".processing"
             full_debounce_alerts_file_processing = f"{full_debounce_alerts_file}.processing"
+
+            if not os.path.exists(full_debounce_alerts_file_processing):
+                self.logger.info(f"file doesn't exist: {full_debounce_alerts_file_processing}.")
+                continue
+
+            self.logger.info(f"debugging - made it past file exists check")
+
             try:
                 # output the current user as well as all files in full_debounce_alerts_file_processing's directory along with who owns them
                 os.system("whoami")
                 os.system(f"ls -l {debounce_alerts_root_file_path}")
                 os.system(f"ls -l {full_debounce_alerts_file_processing}")
-                
+
                 self.logger.info(f"renaming file: {full_debounce_alerts_file} to {full_debounce_alerts_file_processing}")
                 os.rename(full_debounce_alerts_file, full_debounce_alerts_file_processing)
                 # os.system(f"mv {full_debounce_alerts_file} {full_debounce_alerts_file_processing}")
