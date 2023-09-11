@@ -44,6 +44,8 @@ class ProcessDebounceAlerts(PollingSensor):
         #   # Typically the trace_tag is unique and a reference to an external event.
 
 
+        # run whoami
+        self.logger.info('whoami: ' + json.dumps(os.system('whoami')))
 
         debounce_alerts_root_file_path = self._config.get('debounce_alerts_root_file_path')
         trigger_name = "incident_reduction.processed_debounced_alerts"
