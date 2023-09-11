@@ -113,8 +113,8 @@ class ProcessDebounceAlerts(PollingSensor):
             # "claim" the file by renaming it with a suffix of ".processing"
             full_debounce_alerts_file_processing = f"{full_debounce_alerts_file}.processing"
 
-            if not os.path.exists(full_debounce_alerts_file_processing):
-                self.logger.info(f"file doesn't exist: {full_debounce_alerts_file_processing}.")
+            if not os.path.exists(full_debounce_alerts_file):
+                self.logger.info(f"file doesn't exist: {full_debounce_alerts_file}.")
                 continue
 
             self.logger.info(f"debugging - made it past file exists check")
