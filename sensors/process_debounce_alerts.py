@@ -142,9 +142,12 @@ class ProcessDebounceAlerts(PollingSensor):
             # read the file contents
             with open(full_debounce_alerts_file_processing) as f:
                 debounce_alerts_file_contents = f.readlines()
-                self.logger.info('debounce_alerts_file_contents: ' + json.dumps(debounce_alerts_file_contents))
+                self.logger.info('debounce_alerts_file_contents: ' + debounce_alerts_file_contents)
+                self.logger.info('debounce_alerts_file_contents (json.dumps): ' + json.dumps(debounce_alerts_file_contents))
                 for line in debounce_alerts_file_contents:
                     self.logger.info('line: ' + line)
+                    #replace single quotes with double quotes
+                    line = line.replace("'", '"')
                     entries.append(json.loads(line))
 
             # send a trigger which contains a list of the python objects
