@@ -1,0 +1,18 @@
+---
+  class_name: ProcessDebounceAlerts
+  entry_point: "process_debounce_alerts.py"
+  description: "Polling sensor to emit triggers for debounced alerts."
+  poll_interval: 20
+  enabled: true
+  trigger_types:
+    - name: "processed_debounced_alerts"
+      description: "Processes alerts received via the handle-alerts-debounce ingestion workflow"
+      payload_schema:
+        type: "object"
+        properties:
+          metadata:
+            type: "object"
+          entries:
+            type: "array"
+            items:
+              type: "object"

@@ -1,0 +1,17 @@
+---
+name: handle-host-sensor-alerts
+description: Handle alerts from host_sensor
+enabled: true
+
+trigger:
+  type: incident_reduction.low_disk_space_sensor_event
+
+action:
+    ref: incident_reduction.handle-alerts
+    parameters:
+      trigger_data: "{{trigger}}"
+
+      # can get specific and make fields required in the action metadata file
+      # type:  "{{trigger.body.type}}"
+      # actor: "{{trigger.body.actor}}"
+      # id: "{{trigger.body.id}}"

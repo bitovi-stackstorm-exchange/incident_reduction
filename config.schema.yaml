@@ -12,3 +12,9 @@ payload:
         type: "object"
       required: false
       additionalProperties: true
+
+debounce_alerts_root_file_pathL:
+  description: "Root file path for storing debounced alerts."
+  type: "string"
+  required: false 
+  default: "/home/stanley/packdata/bitovi-stackstorm-exchange/incident_reduction"

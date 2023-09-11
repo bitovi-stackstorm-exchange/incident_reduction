@@ -1,0 +1,14 @@
+version: 1.0
+
+description: Handles the sensor data for the debounced alerts
+
+input:
+  - trigger_data
+  - root_file_path
+
+tasks:
+  router:
+    action: core.echo
+    input:
+      message: |
+        Received alert: <% ctx().trigger_data %>

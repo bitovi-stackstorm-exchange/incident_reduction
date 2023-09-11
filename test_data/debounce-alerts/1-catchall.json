@@ -14,6 +14,5 @@
     "EventSeverity": "4",
     "EventTime": "14:27:41",
     "HostName": "foo",
-    "TriggerUrl": "",
-    "unique_code": "foo-0"
+    "TriggerUrl": ""
 }

@@ -1,8 +1,8 @@
 ---
-name: handle-alerts-debounce
-description: Receiver for alert trigger data. Alerts are sent to a file to be picked up by a sensor.
+name: handle-processed-debounced-alerts
+description: Handles the sensor data for the debounced alerts
 runner_type: orquesta
-entry_point: workflows/handle-alerts-debounce.yaml
+entry_point: workflows/handle-processed-debounced-alerts.yaml
 enabled: true
 parameters:
   trigger_data:
