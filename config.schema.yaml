@@ -17,4 +17,4 @@ debounce_alerts_root_file_path:
   description: "Root file path for storing debounced alerts."
   type: "string"
   required: false 
-  default: "/packdata/bitovi-stackstorm-exchange/incident_reduction"
+  default: "/opt/stackstorm/packs/incident_reduction/packdata/debounce_alerts"
