@@ -1,0 +1,45 @@
+version: 1.0
+
+description: Receiver for alerts to be debounced
+
+input:
+  - trigger_data
+  - root_file_path
+
+tasks:
+  router:
+    action: core.echo
+    input:
+      message: |
+        Received alert: <% ctx().trigger_data %>
+    next:
+      - when: <% succeeded() and ctx().trigger_data.keys().contains("unique_code") %>
+        publish:
+          - unique_code: <% ctx().trigger_data.unique_code %>
+        do: store
+      - when: <% succeeded() and not ctx().trigger_data.keys().contains("unique_code") %>
+        do: lookup_unique_code
+
+  store:
+    action: core.local
+    input:
+      cmd: |
+        echo '<% ctx().trigger_data %>' >> <% ctx().root_file_path %>/<% ctx().unique_code %>
+
+  # TODO: look up unique_code if not included in trigger data
+  lookup_unique_code:
+    action: core.echo
+    input:
+      message: |
+        We'll need to look up a unique code for alert: <% ctx().trigger_data %>.
+        storing it in a catchall file for now.
+    next:
+      - when: <% succeeded() %>
+        do: store_catchall
+
+
+  store_catchall:
+    action: core.local
+    input:
+      cmd: |
+        echo '<% ctx().trigger_data %>' >> <% ctx().root_file_path %>/catchall

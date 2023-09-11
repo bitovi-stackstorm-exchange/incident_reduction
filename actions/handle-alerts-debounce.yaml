@@ -1,0 +1,13 @@
+---
+name: handle-alerts-debounce
+description: Receiver for alert trigger data. Alerts are sent to a file to be picked up by a sensor.
+runner_type: orquesta
+entry_point: workflows/handle-alerts-debounce.yaml
+enabled: true
+parameters:
+  trigger_data:
+    required: true
+    type: object
+  root_file_path:
+    type: string
+    default: /opt/stackstorm/packdata/bitovi-stackstorm-exchange/incident_reduction
