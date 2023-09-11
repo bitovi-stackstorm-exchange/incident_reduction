@@ -120,10 +120,12 @@ class ProcessDebounceAlerts(PollingSensor):
             full_debounce_alerts_file_processing = f"{full_debounce_alerts_file}.processing"
             # os.rename(full_debounce_alerts_file, full_debounce_alerts_file_processing)
             try:
+                self.logger.info(f"renaming file: {full_debounce_alerts_file} to {full_debounce_alerts_file_processing}")
                 os.system(f"sudo mv {full_debounce_alerts_file} {full_debounce_alerts_file_processing}")
+
             except Exception as e:
-                self.logger.error(f"error renaming file: {full_debounce_alerts_file} to {full_debounce_alerts_file_processing}")
-                self.logger.error(f"error: {e}")
+                self.logger.info(f"error renaming file: {full_debounce_alerts_file} to {full_debounce_alerts_file_processing}")
+                self.logger.info(f"error: {e}")
                 continue
 
             # read the file contents
