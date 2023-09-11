@@ -162,7 +162,7 @@ class ProcessDebounceAlerts(PollingSensor):
             })
 
             # finally, delete the file
-            # os.remove(full_debounce_alerts_file_processing)
+            os.remove(full_debounce_alerts_file_processing)
 
             
 
