@@ -13,7 +13,7 @@ payload:
       required: false
       additionalProperties: true
 
-debounce_alerts_root_file_pathL:
+debounce_alerts_root_file_path:
   description: "Root file path for storing debounced alerts."
   type: "string"
   required: false 
