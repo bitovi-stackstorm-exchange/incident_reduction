@@ -69,6 +69,7 @@ class ProcessDebounceAlerts(PollingSensor):
         for debounce_alerts_file in debounce_alerts_files:
             entries = []
             full_debounce_alerts_file = f"{debounce_alerts_root_file_path}/{debounce_alerts_file}"
+            self.logger.info(f"process_debounce_alerts.py - processing file: {debounce_alerts_file}")
             
             # if debounce_alerts_file is named catchall, skip it
             if(debounce_alerts_file == "catchall"):
