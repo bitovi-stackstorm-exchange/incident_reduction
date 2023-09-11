@@ -103,7 +103,8 @@ class ProcessDebounceAlerts(PollingSensor):
 
             self.logger.info(f"debugging - file_last_modified: {file_last_modified}")
             self.logger.info(f"debugging - file_age_in_seconds: {file_age_in_seconds}")
-
+            self.logger.info(f"debugging - debounce_time_in_seconds: {debounce_time_in_seconds}")
+            self.logger.info(f"checking if file_age_in_seconds < debounce_time_in_seconds: {file_age_in_seconds < debounce_time_in_seconds}")
             if(file_age_in_seconds < debounce_time_in_seconds):
                 continue
         
