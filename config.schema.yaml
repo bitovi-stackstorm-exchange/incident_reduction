@@ -18,3 +18,9 @@ debounce_alerts_root_file_path:
   type: "string"
   required: false 
   default: "/opt/stackstorm/packs/incident_reduction/packdata/debounce_alerts"
+
+debounce_time_in_seconds:
+  description: "Time in seconds to debounce alerts."
+  type: "integer"
+  required: false
+  default: 20
