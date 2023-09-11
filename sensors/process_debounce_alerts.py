@@ -118,7 +118,8 @@ class ProcessDebounceAlerts(PollingSensor):
         
             # "claim" the file by renaming it with a suffix of ".processing"
             full_debounce_alerts_file_processing = f"{full_debounce_alerts_file}.processing"
-            os.rename(full_debounce_alerts_file, full_debounce_alerts_file_processing)
+            # os.rename(full_debounce_alerts_file, full_debounce_alerts_file_processing)
+            os.system(f"sudo mv {full_debounce_alerts_file} {full_debounce_alerts_file_processing}")
 
             # read the file contents
             with open(full_debounce_alerts_file_processing) as f:
