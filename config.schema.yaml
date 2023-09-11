@@ -23,4 +23,6 @@ debounce_time_in_seconds:
   description: "Time in seconds to debounce alerts."
   type: "integer"
   required: false
-  default: 20
+
+  # 5m
+  default: 300
