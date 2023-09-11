@@ -75,9 +75,12 @@ class ProcessDebounceAlerts(PollingSensor):
             if(debounce_alerts_file == "catchall"):
                 continue
 
+            self.logger.info(f"debugging - made it past catchall check")
             # if debounce_alerts_file has a suffix of ".processing" or ".failed", skip it
             if(debounce_alerts_file.endswith(".processing") or debounce_alerts_file.endswith(".failed")):
                 continue
+
+            self.logger.info(f"debugging - made it past suffix check")
 
             # if debounce_alerts_file is older than 5 minutes, skip it
             file_last_modified = os.path.getmtime(full_debounce_alerts_file)
@@ -85,6 +88,7 @@ class ProcessDebounceAlerts(PollingSensor):
             if(file_age_in_seconds > 300):
                 continue
         
+            self.logger.info(f"debugging - made it past age check")
         
             # "claim" the file by renaming it with a suffix of ".processing"
             full_debounce_alerts_file_processing = f"{full_debounce_alerts_file}.processing"
@@ -93,11 +97,13 @@ class ProcessDebounceAlerts(PollingSensor):
             # read the file contents
             with open(full_debounce_alerts_file_processing) as f:
                 debounce_alerts_file_contents = f.readlines()
-                self.logger.debug('debounce_alerts_file_contents: ' + json.dumps(debounce_alerts_file_contents))
+                self.logger.info('debounce_alerts_file_contents: ' + json.dumps(debounce_alerts_file_contents))
                 for line in debounce_alerts_file_contents:
                     entries.append(json.loads(line))
 
             # send a trigger which contains a list of the python objects
+            self.logger.info(f"sending trigger: {trigger_name}")
+            self.logger.info(f"entries: {entries}")
             self._sensor_service.dispatch(trigger=trigger_name, payload={
                 "metadata": {
                     "unique_code": debounce_alerts_file,
