@@ -10,4 +10,4 @@ parameters:
     type: object
   root_file_path:
     type: string
-    default: /opt/stackstorm/packdata/bitovi-stackstorm-exchange/incident_reduction
+    default: /home/stanley/packdata/bitovi-stackstorm-exchange/incident_reduction

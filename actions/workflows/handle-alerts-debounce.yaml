@@ -24,7 +24,7 @@ tasks:
     action: core.local
     input:
       cmd: |
-        echo '<% ctx().trigger_data %>' >> <% ctx().root_file_path %>/<% ctx().unique_code %>
+        echo "<% ctx().trigger_data %>" >> <% ctx().root_file_path %>/<% ctx().unique_code %>
 
   # TODO: look up unique_code if not included in trigger data
   lookup_unique_code:
