@@ -51,23 +51,15 @@ class ProcessDebounceAlerts(PollingSensor):
         # if the debounce_alerts_root_file_path doesn't exist, log an error and exit
         if not os.path.exists(debounce_alerts_root_file_path):
             self.logger.error(f"debounce_alerts_root_file_path doesn't exist: {debounce_alerts_root_file_path}")
-
-
+            # self.logger.info(f"""
+            # Please run the following commands in the st2 instance:
             # sudo mkdir /packdata
             # sudo groupadd packdata_rw
             # sudo chgrp -R packdata_rw /packdata
             # sudo chmod -R 2775 /packdata
             # sudo usermod -a -G packdata_rw root
             # sudo usermod -a -G packdata_rw stanley
-            self.logger.info(f"""
-            Please run the following commands in the st2 instance:
-            sudo mkdir /packdata
-            sudo groupadd packdata_rw
-            sudo chgrp -R packdata_rw /packdata
-            sudo chmod -R 2775 /packdata
-            sudo usermod -a -G packdata_rw root
-            sudo usermod -a -G packdata_rw stanley
-            """)
+            # """)
             return
 
         # get a list of files in debounce_alerts_root_file_path
@@ -112,7 +104,7 @@ class ProcessDebounceAlerts(PollingSensor):
             self.logger.info(f"debugging - file_last_modified: {file_last_modified}")
             self.logger.info(f"debugging - file_age_in_seconds: {file_age_in_seconds}")
 
-            if(file_age_in_seconds < 300):
+            if(file_age_in_seconds < debounce_time_in_seconds):
                 continue
         
             self.logger.info(f"debugging - made it past age check")
