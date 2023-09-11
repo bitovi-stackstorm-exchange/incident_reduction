@@ -44,11 +44,31 @@ class ProcessDebounceAlerts(PollingSensor):
         #   # Typically the trace_tag is unique and a reference to an external event.
 
 
-        # run whoami
-        self.logger.info('whoami: ' + json.dumps(os.system('whoami')))
-
         debounce_alerts_root_file_path = self._config.get('debounce_alerts_root_file_path')
         trigger_name = "incident_reduction.processed_debounced_alerts"
+
+        # if the debounce_alerts_root_file_path doesn't exist, log an error and exit
+        if not os.path.exists(debounce_alerts_root_file_path):
+            self.logger.error(f"debounce_alerts_root_file_path doesn't exist: {debounce_alerts_root_file_path}")
+
+
+            # sudo mkdir /packdata
+            # sudo groupadd packdata_rw
+            # sudo chgrp -R packdata_rw /packdata
+            # sudo chmod -R 2775 /packdata
+            # sudo usermod -a -G packdata_rw root
+            # sudo usermod -a -G packdata_rw stanley
+            self.logger.info(f"""
+            Please run the following commands in the st2 instance:
+            sudo mkdir /packdata
+            sudo groupadd packdata_rw
+            sudo chgrp -R packdata_rw /packdata
+            sudo chmod -R 2775 /packdata
+            sudo usermod -a -G packdata_rw root
+            sudo usermod -a -G packdata_rw stanley
+            """)
+            return
+
         # get a list of files in debounce_alerts_root_file_path
         #  - that aren't named catchall
         #  - that don't have a suffix of ".processing" or ".failed"
