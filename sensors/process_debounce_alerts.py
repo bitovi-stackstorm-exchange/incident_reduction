@@ -85,6 +85,10 @@ class ProcessDebounceAlerts(PollingSensor):
             # if debounce_alerts_file is older than 5 minutes, skip it
             file_last_modified = os.path.getmtime(full_debounce_alerts_file)
             file_age_in_seconds = time.time() - file_last_modified
+
+            self.logger.info(f"debugging - file_last_modified: {file_last_modified}")
+            self.logger.info(f"debugging - file_age_in_seconds: {file_age_in_seconds}")
+
             if(file_age_in_seconds > 300):
                 continue
         
