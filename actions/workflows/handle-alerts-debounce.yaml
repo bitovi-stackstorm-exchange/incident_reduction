@@ -24,6 +24,7 @@ tasks:
     action: core.local
     input:
       cmd: |
+        mkdir -p "<% ctx().root_file_path %>"
         echo "<% ctx().trigger_data %>" >> <% ctx().root_file_path %>/<% ctx().unique_code %>
 
   # TODO: look up unique_code if not included in trigger data
@@ -42,4 +43,5 @@ tasks:
     action: core.local
     input:
       cmd: |
+        mkdir -p "<% ctx().root_file_path %>"
         echo "<% ctx().trigger_data %>" >> <% ctx().root_file_path %>/catchall
