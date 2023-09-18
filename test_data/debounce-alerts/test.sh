@@ -12,9 +12,16 @@ test_data=$(cat ${test_data_path})
 test_data=$(echo ${test_data} | tr -d '\n')
 
 
+# number of times to make the request
+num_requests=10
 
-curl "${FULL_WEBHOOK_PATH}" \
--k \
- -H 'Content-Type: application/json' \
- -H "St2-Api-Key: ${ST2_API_KEY}" \
- --data-binary "${test_data}"
+# make the request num_requests times
+while [ $num_requests -gt 0 ]; do
+  echo "making request ${num_requests}"
+  curl "${FULL_WEBHOOK_PATH}" \
+  -k \
+   -H 'Content-Type: application/json' \
+   -H "St2-Api-Key: ${ST2_API_KEY}" \
+   --data-binary "${test_data}"
+  num_requests=$((num_requests-1))
+done
