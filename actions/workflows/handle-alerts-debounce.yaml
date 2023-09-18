@@ -16,9 +16,20 @@ tasks:
       - when: <% succeeded() and ctx().trigger_data.keys().contains("unique_code") %>
         publish:
           - unique_code: <% ctx().trigger_data.unique_code %>
-        do: store
+        do: delay_store
       - when: <% succeeded() and not ctx().trigger_data.keys().contains("unique_code") %>
         do: lookup_unique_code
+  
+  # artificial delay
+  delay_store:
+    action: core.local
+    input:
+      cmd: |
+        # sleep random amount of time between 1 and 10 seconds
+        sleep $(( ( RANDOM % 10 )  + 1 ))
+    next:
+      - when: <% succeeded() %>
+        do: store
 
   store:
     action: core.local_sudo
