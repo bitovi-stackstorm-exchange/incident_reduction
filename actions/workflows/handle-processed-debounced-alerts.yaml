@@ -11,4 +11,4 @@ tasks:
     action: core.echo
     input:
       message: |
-        Received alert: <% ctx().trigger_data %>
+        Received alert: <% ctx().trigger_data %>. send to Jira
