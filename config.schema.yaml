@@ -12,3 +12,17 @@ payload:
         type: "object"
       required: false
       additionalProperties: true
+
+debounce_alerts_root_file_path:
+  description: "Root file path for storing debounced alerts."
+  type: "string"
+  required: false 
+  default: "/packdata/bitovi-stackstorm-exchange/incident_reduction/debounce_alerts"
+
+debounce_time_in_seconds:
+  description: "Time in seconds to debounce alerts."
+  type: "integer"
+  required: false
+
+  # 5m
+  default: 300

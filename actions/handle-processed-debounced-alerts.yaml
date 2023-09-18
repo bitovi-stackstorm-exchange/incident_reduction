@@ -1,0 +1,14 @@
+---
+name: handle-processed-debounced-alerts
+description: Handles the sensor data for the debounced alerts
+runner_type: orquesta
+entry_point: workflows/handle-processed-debounced-alerts.yaml
+enabled: true
+parameters:
+  trigger_data:
+    required: true
+    type: object
+  root_file_path:
+    type: string
+    # pull default value from config: debounce_alerts_root_file_path
+    default: "{{config_context.debounce_alerts_root_file_path}}"

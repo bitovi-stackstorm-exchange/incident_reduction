@@ -1,0 +1,19 @@
+{
+    "RecoveryId": "{EVENT.RECOVERY.ID}",
+    "Subject": "newproblem",
+    "Message": "",
+    "RecoveryValue": "{EVENT.RECOVERY.VALUE}",
+    "RecoveryStatus": "{EVENT.RECOVERY.STATUS}",
+    "RecoveryTime": "{EVENT.RECOVERY.TIME}",
+    "RecoveryDate": "{EVENT.RECOVERY.DATE}",
+    "inventorySiteAddressA": "",
+    "EventDate": "2023.07.31",
+    "EventId": "0000000001",
+    "EventName": "foo Unreachable for more than 30 Mins",
+    "EventOpdata": "0, Up (1)",
+    "EventSeverity": "4",
+    "EventTime": "14:27:41",
+    "HostName": "foo",
+    "TriggerUrl": "",
+    "unique_code": "foo-0"
+}

@@ -166,3 +166,16 @@ Demonstrates connecting ChatOps to an existing action.
 ```
 
 > **Note:** This uses the hard-coded default values for hosts. In practice, this would likely be passed as variables.
+
+
+## File sharing between the debounce alerts sensor and workflows
+need to add stanley and st2 to the same group so they can both mess with files in /packdata
+```
+sudo mkdir /packdata
+sudo groupadd packdata_rw
+sudo chgrp -R packdata_rw /packdata
+sudo chmod -R 2775 /packdata
+sudo usermod -a -G packdata_rw st2 # sensor runs as st2
+sudo usermod -a -G packdata_rw stanley # workflows run as stanley
+sudo chown -R st2:packdata_rw /packdata # I wonder if this is sufficient?
+```
