@@ -26,7 +26,7 @@ tasks:
     input:
       cmd: |
         # sleep random amount of time between 1 and 10 seconds
-        sleep $(( ( RANDOM % 10 )  + 1 ))
+        sleep 2
     next:
       - when: <% succeeded() %>
         do: store
