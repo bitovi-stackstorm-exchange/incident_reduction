@@ -1,6 +1,6 @@
 name: incident_reduction.unique_code_concurrency
 description: Limits the concurrent executions for handling debounce alerts
-enabled: false
+enabled: true
 resource_ref: incident_reduction.handle-alerts-debounce
 policy_type: action.concurrency.attr
 parameters:
